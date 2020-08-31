@@ -1,4 +1,5 @@
 // Your code here
+<<<<<<< HEAD
 // import { create } from "domain"
 
 function createEmployeeRecord(ary) {
@@ -95,3 +96,72 @@ rTimeData.forEach(function (d, i) {
 let employees = [sRecord, rRecord];
 
 calculatePayroll(employees);
+=======
+function createEmployeeRecord(array) {
+  let testEmployee = {
+    firstName: array[0],
+    familyName: array[1],
+    title: array[2],
+    payPerHour: array[3],
+    timeInEvents: [],
+    timeOutEvents: [],
+  };
+  return testEmployee;
+}
+
+let testEmployee = createEmployeeRecord(["Gray", "Worm", "Security", 1]);
+
+let twoRows = [
+  ["moe", "sizlak", "barkeep", 2],
+  ["bartholomew", "simpson", "scamp", 3],
+];
+
+const createEmployeeRecords = (array) => {
+   return array.map (x => createEmployeeRecord(x));
+};
+
+let employeeRecords = createEmployeeRecords(twoRows);
+
+createTimeInEvent = (empRecord, dataStamp) => {
+  let spr = dataStamp.split(' ');
+  empRecord.timeInEvents = [
+    {
+      type: "TimeIn",
+      date: spr[0],
+      hour: parseInt(spr[1]),
+    },
+  ];
+  return empRecord;
+};
+let bpRecord = createEmployeeRecord(["Byron", "Poodle", "Mascot", 3]);
+let updatedBpRecord = createTimeInEvent(bpRecord, "2014-02-28 1400");
+let newEvent = updatedBpRecord.timeInEvents[0];
+console.log(newEvent);
+
+function createTimeOutEvent(empRecord, dataStamp) {
+  const TimeOut = dataStamp.split(" ");
+  console.log();
+  empRecord.timeOutEvents = [
+    {
+      type: "TimeOut",
+      date: TimeOut[0],
+      hour: parseInt(TimeOut[1]),
+    },
+  ];
+  return empRecord;
+}
+
+let updatedBpRecords = createTimeOutEvent(bpRecord, "2015-02-28 1700")
+let newEvents = updatedBpRecords.timeOutEvents[0]
+
+function hoursWorkedOnDate(object, date) {
+  let workHours =
+    (object.timeOutEvents[0].hour - object.timeInEvents[0].hour) / 100;
+  return workHours;
+}
+function wagesEarnedOnDate(object, date) {
+  let workHours =
+    (object.timeOutEvents[0].hour - object.timeInEvents[0].hour) / 100;
+  return workHours * object.payPerHour;
+}
+>>>>>>> ee73acb9f6661d7c0b3ee751c344dec0b4ae1592
